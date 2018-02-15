@@ -13,15 +13,19 @@
  */
 
 get_header(); ?>
-		<!-- hero -->
-		<section class="hero-banner innerPG" style="<?php if ( has_post_thumbnail() ) { ?>background-image: url(<?php echo get_template_directory_uri (); ?>/assets/images/overlay.png), url(<?php the_post_thumbnail_url();} ?>)">
-	      <div class="banner-content">
-	        <div class="container text-center">
-	          <h1><?php the_title(); ?></h1>
-	        </div>
-	      </div>
-	    </section>
-	    <!-- / hero -->
+
+<div class="title-wrapper background-cover with-overlay full">
+        <div class="bg-image" style="<?php if ( has_post_thumbnail() ) { ?>background-image: url(<?php echo get_template_directory_uri (); ?>/assets/images/overlay.png), url(<?php the_post_thumbnail_url();} ?>)"></div>
+                <div class="section-overlay" style="background-color:#00305c;">
+    </div>
+        <div class="container">
+        <div class="title">
+           <h1><?php the_title(); ?></h1>
+        </div>
+    </div>
+    </div>
+
+
 
 		<main id="main" class="site-main main-content" role="main">	
 			<div class="container m-content ptb30">

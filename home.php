@@ -1,139 +1,94 @@
 <?php
 /**
-* Template Name: home
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WP_Bootstrap_Starter
  */
 
 get_header(); ?>
-	<!-- slider -->
-	<section class="home-slider">
-		<?php masterslider(1); ?>
-	</section>
-		<!-- slider -->
 
-	<article>
-      <div class="article-content">
+<?php 
+if (is_home() && get_option('page_for_posts') ) {
+    $img = wp_get_attachment_image_src(get_post_thumbnail_id(get_option('page_for_posts')),'full'); 
+    $featured_image = $img[0];
+}
+ ?>
+
+<div class="title-wrapper background-cover with-overlay full">
+        <div class="bg-image" style="background-image: url(<?php echo $featured_image ?> )"></div>
+                <div class="section-overlay" style="background-color:#00305c;">
+    </div>
         <div class="container">
-        	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                  <?php the_content(); ?>
-          	<?php endwhile; endif; ?>
+        <div class="title">
+           <h1><?php echo get_the_title( get_option('page_for_posts', true) ); ?></h1>
         </div>
-      </div>
-    </article>
+    </div>
+    </div>
 
-	<section id="primary" class="content-area col-sm-12">
-	<main id="main" class="site-main" role="main">
-		<section class="resultsTable">
-	      <div class="container">
-	        <div class="rt-content">
-        	<!-- start loop -->
-            <?php $temp_query = clone $wp_query; ?>
-            <?php query_posts( 'category_name=home' ); ?>
-            <?php while ( have_posts() ) : the_post(); ?>
-            <!-- Do special_cat stuff... -->
-	          <div class="row ratingRow">
-	            <div class="col-sm-3">
-	              <div class="siteImg">
-	                <img style="width: 140px; height: 140px; object-fit: cover;" src="<?php the_post_thumbnail_url(); ?>">
-	              </div>
-	            </div>
-	            <div class="col-sm-4">
-	              <div class="intro">
-	                <div class="int-head">
-	                  #<?php echo $wp_query->current_post +1; ?> 
-					  <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
-	                </div>
-	                <?php the_excerpt(); ?>
-	              </div>
-	            </div>
-	            <div class="col-sm-2">
-	              <div class="score">
-	                <h3><?php echo get_post_meta($post->ID, 'rating', true); ?></h3>
-	                <!-- <div class="t5rating">
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                 </div> -->
-	              </div>
-	            </div>
-	            <div class="col-sm-3">
+    <div class="container main-content no-sidebar">
+    	<div class="row">
+    		<div class="main">
+    			<div class="page-detail content">
+    				<div class="page-detail-inner">
+    					<div class="section">
+    						<div class="blog-posts medium scrollmore" data-animation="fadeInDown">
+    								<div class="item-wrapper">
+			<ul class="view row list-style-none">
 
-	              <div class="visitLinks">
-	                <a href="javascript:void(0)" target="_blank" class="btn btn-visit">
-	                  Go to website
-	                  </a>
-	                <br>
-	                <a href="<?php the_permalink() ?>" class="readRBtn">
-	                    Read Review
-	                  </a>
-	              </div>
-	            </div>
-	          </div>
-	         <?php endwhile; ?>
-             <?php $wp_query = clone $temp_query; ?>
-             <!-- end loop -->
+			<?php
+			/* Start the Loop */
+			while ( have_posts() ) : the_post();
+
+				/*
+				 * Include the Post-Format-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+				 */
+				get_template_part( 'template-parts/content', get_post_format() );
+
+			endwhile;
+
+?>
+</ul>
+</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
 
 
-             <!--  -->
-             	<!-- start loop -->
-            <?php $temp_query = clone $wp_query; ?>
-            <?php query_posts( 'category_name=home-es' ); ?>
-            <?php while ( have_posts() ) : the_post(); ?>
-            <!-- Do special_cat stuff... -->
-	          <div class="row ratingRow">
-	            <div class="col-sm-3">
-	              <div class="siteImg">
-	                <img style="width: 140px; height: 140px; object-fit: cover;" src="<?php the_post_thumbnail_url(); ?>">
-	              </div>
-	            </div>
-	            <div class="col-sm-4">
-	              <div class="intro">
-	                <div class="int-head">
-	                  #<?php echo $wp_query->current_post +1; ?> 
-					  <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
-	                </div>
-	                <?php the_excerpt(); ?>
-	              </div>
-	            </div>
-	            <div class="col-sm-2">
-	              <div class="score">
-	                <h3><?php echo get_post_meta($post->ID, 'rating', true); ?></h3>
-	                <!-- <div class="t5rating">
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                    <span class="fa fa-star active"></span>
-	                 </div> -->
-	              </div>
-	            </div>
-	            <div class="col-sm-3">
+		<?php
+		if ( have_posts() ) :
 
-	              <div class="visitLinks">
-	                <a href="javascript:void(0)" target="_blank" class="btn btn-visit">
-	                  Go to website
-	                  </a>
-	                <br>
-	                <a href="<?php the_permalink() ?>" class="readRBtn">
-	                    Read Review
-	                  </a>
-	              </div>
-	            </div>
-	          </div>
-	         <?php endwhile; ?>
-             <?php $wp_query = clone $temp_query; ?>
-             <!-- end loop -->
-             <!--  -->
-	        </div>
-	        <!--table-responsive -->
-	      </div>
-	      
-	    </section>
+			if ( is_home() && ! is_front_page() ) : ?>
+				<header>
+					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+				</header>
 
-                    
-	</main><!-- #main -->
-	</section><!-- #primary -->
+			<?php
+			endif;
+?>	
+
+<?php
+			the_posts_navigation();
+
+		else :
+
+			get_template_part( 'template-parts/content', 'none' );
+
+		endif; ?>
+
+
 
 <?php
 get_footer();

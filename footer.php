@@ -10,24 +10,26 @@
  */
 
 ?>
-<?php if(!is_page_template( 'blank-page.php' ) && !is_page_template( 'blank-page-with-container.php' )): ?>
-			</div><!-- .row -->
-		</div><!-- .container -->
-	</div><!-- #content -->
-    <?php get_template_part( 'footer-widget' ); ?>
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="container">
-            <div class="site-info">
-                &copy; <?php echo date('Y'); ?> <?php echo '<a href="'.home_url().'">'.get_bloginfo('name').'</a>'; ?>
-                <span class="sep"> | </span>
-                <a class="credits" href="https://makewebhappy.com/" target="_blank">by makewebhappy</a>
 
-            </div><!-- close .site-info -->
-		</div>
-	</footer><!-- #colophon -->
-<?php endif; ?>
+<footer id="footer">
+                                                <div id="footer-bottom" class="footer-center footer-large">
+                <div class="container">
+                                                            <div id="footer-nav" class="col-sm-12">
+                    <ul class="social-icons"><li><a href="https://www.facebook.com/pages/Wd-Communications/111037652291989?fref=ts" target="_blank" title="" data-placement="top" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li><li><a href="https://www.linkedin.com/company/wd-communications" target="_blank" title="" data-placement="top" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li><li><a href="https://twitter.com/wdcomm" target="_blank" title="" data-placement="top" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li></ul>                    </div>
+                                    </div>
+            </div>
+            	    </footer>
+
+         
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
+<script type='text/javascript' src='http://wdcommunications.com/wp-content/themes/Vela/js/modernizr.js'></script>
+<script type='text/javascript' src='http://wdcommunications.com/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://wdcommunications.com/wp-includes/js/jquery/ui/effect.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://wdcommunications.com/wp-content/themes/Vela/js/countUp.js?ver=1.5.3'></script>
+<script type='text/javascript' src='http://wdcommunications.com/wp-content/themes/Vela/js/plugins.min.js?ver=1.5.3'></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri()
+?>/assets/js/theme.js"></script>
 </body>
 </html>
